@@ -1,0 +1,145 @@
+/* here you can put your own css to customize and override the theme */
+.error-message, .required-message, #application-form {
+	display: none;
+}
+.sinet-logo {
+	background: #8DC640 !important;
+}
+.navbar-header {
+	width: 100%;
+}
+.sinet-logo {
+	float: right;
+	padding: 10px 20px;
+}
+.scrolling-fixed .sinet-logo {
+	padding: 3px 20px;
+}
+.navbar>.container .navbar-brand {
+	margin: 0;
+}
+#myCarousel {
+	margin-top: 20px;
+}
+.form-horizontal .form-group {
+	margin: 15px 0;
+}
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (max-width: 992px) {
+	.margin-bottom-5, .form-horizontal .control-label {
+		margin-bottom: 5px;
+	}
+	.ver-inline-menu li.active:after {
+		display: none;
+	}
+	#summary-details {
+		visibility: hidden;
+		height: 0px;
+	}
+	.page-header-fixed .page-container {
+		margin-top: 85px;
+	}
+}
+.form-horizontal #navigation-table {
+	float: right;
+}
+.panel-primary {
+	border-color: #22036f;
+}
+.panel-primary>.panel-heading {
+	background: #22036f;
+	border-color: #22036f;
+}
+.panel-primary>.panel-heading+.panel-collapse .panel-body {
+	border-top-color: #22036f;
+}
+.panel-warning {
+	border-color: #fcf8e3;
+}
+.panel-warning>.panel-heading {
+	background: #fcf8e3;
+	border-color: #fcf8e3;
+}
+.panel-warning>.panel-heading+.panel-collapse .panel-body {
+	border-top-color: #fcf8e3;
+}
+/*.btn-primary {
+	background: #8DC640;
+	border-color: #8DC640;
+}
+.btn-primary:hover {
+	background-color: #8DC640;
+	border-color: #8DC640;
+	opacity: .65;
+}*/
+a.btn-transparent:hover {
+  background-color: #22036f;
+}
+a.btn-transparent.green:hover {
+  background-color: #8DC640;
+}
+.btn.disabled {
+	text-align: left;
+}
+a.accordion-toggle {
+	text-decoration: none;
+}
+#summary-details li a {
+	text-transform: uppercase;
+}
+.accordion-toggle.btn.disabled {
+	padding: 0;
+	width: 100%;
+}
+.panel-heading.disabled {
+	opacity: .65;
+}
+.panel-heading {
+	display: block;
+}
+@media (min-width: 400px) {
+	.scrolling-fixed .navbar-brand {
+		padding: 5px 0;
+	}
+	.sinet-logo {
+		padding: 10px 20px 11px;
+	}
+	.scrolling-fixed .sinet-logo {
+		padding: 5px 20px 6px;
+	}
+}
+@media (min-width: 768px) {
+	.navbar>.container .navbar-brand {
+		margin-left: -15px;
+	}
+}
+@media (max-width: 768px) {
+	.navbar>.container .navbar-brand img {
+		width: 120px;
+	}
+	.header.scrolling-fixed a.logo-v1 img {
+		margin-top: 0px;
+	}
+	.page-header-fixed .page-container {
+		margin-top: 60px;
+	}
+}
+.completed-text {
+	float       : right;
+	font-size   : 12px;
+	padding-top : 3px;
+	display: none;
+	color       : black;
+}
+.incomplete .completed-text {
+	display: inline-block;
+}
+.container>.navbar-header {
+	margin: 0px;
+}
+.form-group label span {
+	color:  #cc0000;
+}
