@@ -153,7 +153,7 @@ var App = function () {
 						headerwrap = $( '.front-header' ),
 						slider = $( '.slider-main' ),
 						didScroll = false,
-						changeHeaderOn = 300;
+						changeHeaderOn = 120;
 
 				function scrollPage() {
 						var sy = scrollY();
@@ -161,12 +161,10 @@ var App = function () {
 								headerwrap.addClass( 'front-header-shrink' );
 								header.addClass( 'navbar-inner-shrink' );
 								$( '.logoimg' ).attr( 'width', '120px' );
-								//$('#logoimg').attr('height', '18px');
 						} else {
 								headerwrap.removeClass( 'front-header-shrink' );
 								header.removeClass( 'navbar-inner-shrink' );
 								$( '.logoimg' ).attr( 'width', '200px' );
-								//$('#logoimg').attr('height', '21px');
 						}
 						didScroll = false;
 				}
@@ -239,7 +237,6 @@ var App = function () {
 
 		var showHideApplicationForm = function () {
 				$( '#apply-now' ).click( function ( event ) {
-					event.preventDefault();
 						$( '#application-form' ).fadeIn( 1000 );
 				} );
 		};
@@ -332,27 +329,27 @@ var App = function () {
 						}
 				},
 
-				initBxSlider: function () {
-						$( '.bxslider' ).show();
-						$( '.bxslider' ).bxSlider( {
-								minSlides: 3,
-								maxSlides: 3,
-								slideWidth: 360,
-								slideMargin: 10,
-								moveSlides: 1,
-								responsive: true,
-						} );
+				// initBxSlider: function () {
+				// 		$( '.bxslider' ).show();
+				// 		$( '.bxslider' ).bxSlider( {
+				// 				minSlides: 3,
+				// 				maxSlides: 3,
+				// 				slideWidth: 360,
+				// 				slideMargin: 10,
+				// 				moveSlides: 1,
+				// 				responsive: true,
+				// 		} );
 
-						$( '.bxslider1' ).show();
-						$( '.bxslider1' ).bxSlider( {
-								minSlides: 6,
-								maxSlides: 6,
-								slideWidth: 360,
-								slideMargin: 2,
-								moveSlides: 1,
-								responsive: true,
-						} );
-				},
+				// 		$( '.bxslider1' ).show();
+				// 		$( '.bxslider1' ).bxSlider( {
+				// 				minSlides: 6,
+				// 				maxSlides: 6,
+				// 				slideWidth: 360,
+				// 				slideMargin: 2,
+				// 				moveSlides: 1,
+				// 				responsive: true,
+				// 		} );
+				// },
 
 				// wrapper function to scroll to an element
 				scrollTo: function ( el, offeset ) {

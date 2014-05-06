@@ -143,3 +143,9 @@ a.accordion-toggle {
 .form-group label span {
 	color:  #cc0000;
 }
+table.table#job-summary td {
+	border: none;
+}
+table.table#job-summary .text-primary {
+	font-weight: bold;
+}
