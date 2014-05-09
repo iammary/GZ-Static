@@ -1,4 +1,50 @@
-/* here you can put your own css to customize and override the theme */
+/***
+Bootstrap Datepicker
+***/
+
+.datepicker.dropdown-menu {
+  padding: 5px;
+}
+
+.datepicker .selected {
+  background-color:#909090 !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+.datepicker .active {
+  background-color:#4b8df8 !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+.datepicker .active:hover {
+  background-color: #2678FC !important;
+  background-image: none !important;
+  filter: none !important;
+}
+
+.datepicker .input-daterange input {
+  text-align: left;
+}
+
+/* change z-index when opened in modal */
+.modal-open .datepicker {
+  z-index: 10055 !important;
+}
+
+.datepicker table td {
+  font-weight: 300  !important;
+  font-family: 'Open Sans' !important;
+}
+
+.datepicker table th {
+  font-family: 'Open Sans' !important;
+  font-weight: 400  !important;
+}
+
+/* Custom CSS */
+
 .error-message, .required-message, #application-form {
 	display: none;
 }
@@ -148,4 +194,22 @@ table.table#job-summary td {
 }
 table.table#job-summary .text-primary {
 	font-weight: bold;
+}
+.tab-style-1 .tab-content {
+	background: none;
+}
+.tab-style-1 ul.nav-tabs > li {
+	min-width: 220px;
+}
+h4.text-primary {
+	font-weight: bold;
+}
+.text-primary {
+	color: #22036f;
+}
+h1 {
+	font-size: 32px;
+}
+.no-display {
+	display: none;
 }

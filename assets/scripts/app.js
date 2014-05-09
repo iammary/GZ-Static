@@ -246,10 +246,7 @@ var App = function () {
 				return pattern.test( emailAddress );
 		};
 
-		var checkInputFields = function () {
-				$('input,select').keypress(function(event) { return event.keyCode !== 13; });
-				$( '#accordion1 input' ).blur( function () {
-					var _this = this;
+		var inputFocusOut = function ( _this ) {
 					var nextParent = $( _this ).closest( '.panel-finder' ).next().find('.panel-collapse').attr('id');
 					var nextParentID = '#' + nextParent;
 					var parentPanel = $( _this ).closest( '.panel-collapse' );
@@ -271,7 +268,6 @@ var App = function () {
 									validated = true;
 								}
 					} ).promise().done( function() {
-
 							if ( !validated ) {
 								$( parentPanel ).parent().removeClass('completed');
 								$( parentPanel ).parent().addClass('incomplete panel-warning');
@@ -288,16 +284,57 @@ var App = function () {
 							}
 							var completedPanels = $( _this ).closest('#accordion1').find('.panel-finder.completed').length;
 							if ( completedPanels < 4 ) {
-									$( '#formsubmit' ).addClass( 'disabled' );
+									$( '.formsubmit' ).addClass( 'disabled' );
 								} else {
-									$( '#formsubmit' ).removeClass( 'disabled' );
+									$( '.formsubmit' ).removeClass( 'disabled' );
 								}
 					});
+				} ;
+
+		var checkInputFields = function ( enabled ) {
+			if ( enabled ) {
+				$('input,select').keypress(function(event) { return event.keyCode !== 13; });
+				$( '#accordion1 input' ).blur( function () {
+					inputFocusOut( this );
 				} );
+				$( '#accordion1 textarea' ).blur( function () {
+					inputFocusOut( this );
+				} );
+				$( '#accordion1 select' ).focusout( function () {
+					inputFocusOut( this );
+				} );
+			}
 		};
 
 		var addCompletedMessage = function () {
-			$('.panel-title').append('<span class="completed-text">Invalid input on required fields.</span>');
+			$('.panel-title').append('<span class="completed-text">Missing/Invalid input on required fields.</span>');
+		};
+
+		var changePositionState = function () {
+			$( '#hear-position' ).change( function () {
+				var value = $( this ).val();
+				if (  value === 'Referral' ) {
+					$( '#referral-name' ).attr( 'type', 'text').show();
+					$( '#others-name' ).attr( 'type', 'hidden').hide();
+					$( '#referral-name' ).focusout( function () {
+						var ref = $( this ).val();
+						$( '.position-hear' ).first().val( value + ' by ' + ref );
+					} );
+				} else if ( value === 'Others' ) {
+					$( '#others-name' ).attr( 'type', 'text').show();
+					$( '#referral-name' ).attr( 'type', 'hidden').hide();
+					$( '#others-name' ).focusout( function () {
+						var ref = $( this ).val();
+						$( '.position-hear' ).first().val( value + ': ' + ref );
+					} );
+				} else {
+					$( '#others-name' ).hide();
+					$( '#referral-name' ).hide();
+					$( '#others-name' ).attr( 'type', 'hidden').show();
+					$( '#referral-name' ).attr( 'type', 'hidden').hide();
+					$( '.position-hear' ).first().val( value );
+				}
+			} );
 		};
 
 		return {
@@ -312,8 +349,9 @@ var App = function () {
 						handleFixedHeader();
 						customAccordion();
 						showHideApplicationForm();
+						changePositionState();
 						addCompletedMessage();
-						checkInputFields();
+						checkInputFields( true );
 				},
 
 				initUniform: function ( els ) {
@@ -328,28 +366,6 @@ var App = function () {
 								handleUniform();
 						}
 				},
-
-				// initBxSlider: function () {
-				// 		$( '.bxslider' ).show();
-				// 		$( '.bxslider' ).bxSlider( {
-				// 				minSlides: 3,
-				// 				maxSlides: 3,
-				// 				slideWidth: 360,
-				// 				slideMargin: 10,
-				// 				moveSlides: 1,
-				// 				responsive: true,
-				// 		} );
-
-				// 		$( '.bxslider1' ).show();
-				// 		$( '.bxslider1' ).bxSlider( {
-				// 				minSlides: 6,
-				// 				maxSlides: 6,
-				// 				slideWidth: 360,
-				// 				slideMargin: 2,
-				// 				moveSlides: 1,
-				// 				responsive: true,
-				// 		} );
-				// },
 
 				// wrapper function to scroll to an element
 				scrollTo: function ( el, offeset ) {
