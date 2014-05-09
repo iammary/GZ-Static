@@ -213,3 +213,6 @@ h1 {
 .no-display {
 	display: none;
 }
+.ref-container {
+	min-height: 50px;
+}

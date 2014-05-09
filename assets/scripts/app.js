@@ -311,28 +311,12 @@ var App = function () {
 		};
 
 		var changePositionState = function () {
-			$( '#hear-position' ).change( function () {
+			$( '#entry_1078715699' ).change( function () {
 				var value = $( this ).val();
 				if (  value === 'Referral' ) {
-					$( '#referral-name' ).attr( 'type', 'text').show();
-					$( '#others-name' ).attr( 'type', 'hidden').hide();
-					$( '#referral-name' ).focusout( function () {
-						var ref = $( this ).val();
-						$( '.position-hear' ).first().val( value + ' by ' + ref );
-					} );
-				} else if ( value === 'Others' ) {
-					$( '#others-name' ).attr( 'type', 'text').show();
-					$( '#referral-name' ).attr( 'type', 'hidden').hide();
-					$( '#others-name' ).focusout( function () {
-						var ref = $( this ).val();
-						$( '.position-hear' ).first().val( value + ': ' + ref );
-					} );
+					$( '#entry_2045776669' ).attr( 'type', 'text');
 				} else {
-					$( '#others-name' ).hide();
-					$( '#referral-name' ).hide();
-					$( '#others-name' ).attr( 'type', 'hidden').show();
-					$( '#referral-name' ).attr( 'type', 'hidden').hide();
-					$( '.position-hear' ).first().val( value );
+					$( '#entry_2045776669' ).attr( 'type', 'hidden');
 				}
 			} );
 		};
