@@ -153,14 +153,14 @@ var App = function () {
 						headerwrap = $( '.front-header' ),
 						slider = $( '.slider-main' ),
 						didScroll = false,
-						changeHeaderOn = 120;
+						changeHeaderOn = 80;
 
 				function scrollPage() {
 						var sy = scrollY();
 						if ( sy >= changeHeaderOn ) {
 								headerwrap.addClass( 'front-header-shrink' );
 								header.addClass( 'navbar-inner-shrink' );
-								$( '.logoimg' ).attr( 'width', '120px' );
+								$( '.logoimg' ).attr( 'width', '80px' );
 						} else {
 								headerwrap.removeClass( 'front-header-shrink' );
 								header.removeClass( 'navbar-inner-shrink' );
@@ -246,6 +246,13 @@ var App = function () {
 				return pattern.test( emailAddress );
 		};
 
+		var validatedEmail = function ( valid, __this ) {
+			if ( valid ) {
+				$( __this ).parent().find('.icon-exclamation-sign').addClass('icon-envelope').removeClass('icon-exclamation-sign tooltips').parent().addClass('input-group-addon').removeClass('input-icon-addon').parent().addClass('input-group').removeClass('input-icon').parent().removeClass('has-error');
+			} else {
+				$( __this ).parent().find('.icon-envelope').removeClass('icon-envelope').addClass('icon-exclamation-sign tooltips').parent().removeClass('input-group-addon').addClass('input-icon-addon').parent().removeClass('input-group').addClass('input-icon').parent().addClass('has-error');
+			};
+		}
 		var inputFocusOut = function ( _this ) {
 					var nextParent = $( _this ).closest( '.panel-finder' ).next().find('.panel-collapse').attr('id');
 					var nextParentID = '#' + nextParent;
@@ -253,20 +260,29 @@ var App = function () {
 					var nextPanelID = $( _this ).closest( '.panel-finder' ).next();
 					var validated = false;
 					var truthy = true;
+					var emailThis = ( $( _this ).attr('type') ) === 'email';
+					if ( emailThis ) {
+						var emailval = isValidEmailAddress( $( _this ).val() );
+						console.log( emailval )
+						validatedEmail( emailval, _this );
+					}
 					$( parentPanel ).find( '[aria-required=' + truthy + ']' ).each( function ( index ) {
-							var _this = this;
-							if ( $( _this ).val() === '' ) {
+							var __this = this;
+							if ( $( __this ).val() === '' ) {
 								validated = false;
 								return false;
 							}
-							if ( ( $( _this ).attr('type') ) === 'email' ) {
-									validated = isValidEmailAddress( $( _this ).val() );
-									if ( !validated ) {
-										return false;
-									}
+							if ( ( $( __this ).attr('type') ) === 'email' ) {
+								validated = isValidEmailAddress( $( __this ).val() );
+								if ( !validated ) {
+									validatedEmail( false, __this );
+									return false;
 								} else {
-									validated = true;
+									validatedEmail( true, __this );
 								}
+							} else {
+								validated = true;
+							}
 					} ).promise().done( function() {
 							if ( !validated ) {
 								$( parentPanel ).parent().removeClass('completed');
@@ -300,14 +316,14 @@ var App = function () {
 				$( '#accordion1 textarea' ).blur( function () {
 					inputFocusOut( this );
 				} );
-				$( '#accordion1 select' ).focusout( function () {
+				$( '#accordion1 select' ).change( function () {
 					inputFocusOut( this );
 				} );
 			}
 		};
 
 		var addCompletedMessage = function () {
-			$('.panel-title').append('<span class="completed-text">Missing/Invalid input on required fields.</span>');
+			$('.panel-title').append('<span class="completed-text">Invalid input/s on required fields.</span>');
 		};
 
 		var changePositionState = function () {
@@ -320,6 +336,16 @@ var App = function () {
 				}
 			} );
 		};
+
+		var urlParse = function() {
+			$( "#hidden_iframe" ).load(function() {
+				var name = $( '#entry_415074683' ).val();
+				$('#confirmation').modal('show').find('#applicant').text( name );
+			});
+			$('#confirmation').on('hidden.bs.modal', function () {
+				$(location).attr('href', 'index.html')
+			});
+		}
 
 		return {
 				init: function () {
@@ -336,6 +362,7 @@ var App = function () {
 						changePositionState();
 						addCompletedMessage();
 						checkInputFields( true );
+						urlParse();
 				},
 
 				initUniform: function ( els ) {
