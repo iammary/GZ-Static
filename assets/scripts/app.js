@@ -340,12 +340,23 @@ var App = function () {
 		var urlParse = function() {
 			$( "#hidden_iframe" ).load(function() {
 				var name = $( '#entry_415074683' ).val();
-				$('#confirmation').modal('show').find('#applicant').text( name );
-			});
-			$('#confirmation').on('hidden.bs.modal', function () {
-				$(location).attr('href', 'index.html')
+				var scriptLocation = 'https://script.google.com/macros/s/AKfycbwyRLtVLWkA4tAcW4py83MDYWC8rwT9WXHLxGfrwraWPNM3yBIY/exec'
+				var newLocation = scriptLocation + '?' + name;
+				$(location).attr('href', newLocation )
 			});
 		}
+
+		var checkload = function () {
+      var currUrl = $(location).attr('href');
+      var applicantName = currUrl.match(/\?.+/);
+      if ( applicantName ) {
+				var name = decodeURIComponent( applicantName[0].substr(1) );
+        $('#confirmation').modal('show').find('#applicant').text( name );
+      }
+      $('#confirmation').on('hidden.bs.modal', function () {
+				$(location).attr('href', 'index.html')
+			});
+    }
 
 		return {
 				init: function () {
@@ -363,6 +374,7 @@ var App = function () {
 						addCompletedMessage();
 						checkInputFields( true );
 						urlParse();
+						//checkload();
 				},
 
 				initUniform: function ( els ) {
